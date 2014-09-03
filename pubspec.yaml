@@ -8,4 +8,5 @@ dependencies:
   browser: '>=0.10.0+2 <0.11.0'
   gorgon: '>=0.14.0 <0.15.0'
 dev_dependencies:
+  dartmocks: '>=0.5.2 <0.6.0'
   unittest: '>=0.11.0+2 <0.12.0'

@@ -28,7 +28,7 @@ class GameObject {
    *  [active], if the [GameObject] is active then it will behave normally if not, it will be ignored complety.
    *  [alpha], [mirroring], [rotation], [scale] these will be applied and cascaded while drawing.
    */
-  GameObject(Spritepack spritepack, Animationpack animationpack, Point2D position, { bool active: true, double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, num scale: 1 })
+  GameObject(Spritepack spritepack, Animationpack animationpack, Point2D position, { bool active: true, double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0 })
   {
     _animator      = new Animator(spritepack, animationpack);
     this.position  = position;

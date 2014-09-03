@@ -16,7 +16,7 @@ main()
   Animationpack chico_ap = new Animationpack.fromJSON("resources/chico/chico_animationpack.json");
 
   Future.wait([sp.onLoad, chico_sp.onLoad, chico_ap.onLoad]).then((_){
-    GameObject chico = new GameObject(chico_sp,chico_ap,new Point2D(30,85), alpha: 200);
+    GameObject chico = new GameObject(chico_sp,chico_ap,new Point2D(30,85));
     chico.animator.changeAnimation("walk");
 
     num ang = -30;
