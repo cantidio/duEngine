@@ -6,6 +6,9 @@ class Tile {
   int _frameOn;
   int _timeOn;
 
+  int get timeOn => _timeOn;
+  int get frameOn => _frameOn;
+
   /**
    * Constructs tile from [Sprite] list.
    */
@@ -16,7 +19,7 @@ class Tile {
     _timeOn = 0;
   }
 
-  void draw( Point2D position){
+  void draw( Point2D position ){
     _spriteList[_frameOn].draw(position);
   }
 

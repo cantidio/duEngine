@@ -8,6 +8,7 @@ library duengine;
 import 'package:gorgon/gorgon.dart';
 
 part 'src/tile.dart';
+part 'src/tilemap.dart';
 
 //import 'dart:core';
 //import 'dart:html';

@@ -17,13 +17,27 @@ main()
     num ang = 0.0;
     num scale = 1.0;
     int scale_mod = 1;
+    List<Tile> tl = [];
+    sp.groups.forEach((String group){
+      tl.add(new Tile(sp[group]));
+    });
 
-    Tile simpleTile = new Tile(sp["6"]);
+    TileMap map = new TileMap.fromMatrix([
+                                          [tl[0],tl[1],tl[2]],
+                                          [tl[0],tl[1],tl[2]],
+                                          [tl[0],tl[1],tl[2]],
+                                          [tl[0],tl[1],tl[2]],
+                                          [tl[0],tl[1],tl[2]],
+                                          [tl[0],tl[1],tl[2]]
+                                          ], new Point2D(16,16));
+
     int tile = 0;
       Timer timer = new Timer.periodic( const Duration(milliseconds: 1000~/3), (_) {
          display.clear();
-         simpleTile.draw(new Point2D(50, 50));
-         simpleTile.logic();
+         map.draw(new Point2D(0, 0));
+         map.logic();
       });
   });
+
+
 }

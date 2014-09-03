@@ -3,8 +3,9 @@
  * For conditions of distribution and use, see copyright notice in LICENSE.txt
  */
 import 'package:unittest/html_config.dart';
-
+import 'tile_test.dart'  as tile;
 main()
 {
   useHtmlConfiguration();
+  tile.main();
 }
