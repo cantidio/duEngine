@@ -1,6 +1,6 @@
 part of duengine;
 
-class TileMap{
+class TileMap {
   List<Map> _tileList;
 
   TileMap.fromMatrix(List<List<Tile>> tileMatrix, Point2D tileSize)

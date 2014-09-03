@@ -2,24 +2,24 @@ part of duengine;
 
 class GameObject {
   Animator _animator;
-  Point2D _position;
-  Mirroring _mirroring;
+  Point2D position;
+  Mirroring mirroring;
   bool active;
-  int _alpha;
-  num _rotation;
-  num _scale;
+  int alpha;
+  num rotation;
+  num scale;
 
   Animator get animator => _animator;
 
-  GameObject(Spritepack spritepack, Animationpack animationpack)
+  GameObject(Spritepack spritepack, Animationpack animationpack, Point2D position, { bool active: true, int alpha: 255 ,Mirroring mirroring: Mirroring.None, num rotation: 0, num scale: 1 })
   {
     _animator  = new Animator(spritepack, animationpack);
-    _position  = new Point2D.zero();
-    _alpha     = 255;
-    _rotation  = 0;
-    _scale     = 1;
-    _mirroring = Mirroring.None;
-    active     = true;
+    this.position  = position;
+    this.alpha     = alpha;
+    this.rotation  = rotation;
+    this.scale     = scale;
+    this.mirroring = mirroring;
+    this.active    = active;
   }
 
   void draw(Point2D position, { int alpha: 255 ,Mirroring mirroring: Mirroring.None, num rotation: 0, num scale: 1 })
@@ -27,11 +27,11 @@ class GameObject {
     if(active)
     {
       animator.draw(
-        _position + position,
-        alpha:     _alpha - (255 - alpha),
-        mirroring: _mirroring ^ mirroring,
-        rotation:  _rotation + rotation,
-        scale:     _scale * scale
+        this.position + position,
+        alpha:     this.alpha - (255 - alpha),
+        mirroring: this.mirroring ^ mirroring,
+        rotation:  this.rotation + rotation,
+        scale:     this.scale * scale
       );
     }
   }
