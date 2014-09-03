@@ -23,29 +23,27 @@ main()
     num scale = 1.0;
     int scale_mod = 1;
     List<Tile> tl = [];
-    sp.groups.forEach((String group){
-      tl.add(new Tile(sp[group]));
-    });
+
+    sp.groups.forEach((String group) => tl.add(new Tile(sp[group])) );
 
     TileMap map = new TileMap.fromMatrix([
-                                          [tl[0],tl[1],tl[2],tl[3],tl[4],tl[5]],
-                                          [tl[1],tl[2],tl[3],tl[4],tl[5],tl[0]],
-                                          [tl[2],tl[3],tl[4],tl[5],tl[0],tl[1]],
-                                          [tl[3],tl[4],tl[5],tl[0],tl[1],tl[2]],
-                                          [tl[4],tl[5],tl[0],tl[1],tl[2],tl[3]],
-                                          [tl[5],tl[0],tl[1],tl[2],tl[3],tl[4]],
-
-                                          ], new Point2D(16,16));
+      [tl[0],tl[1],tl[2],tl[3],tl[4],tl[5]],
+      [tl[1],tl[2],tl[3],tl[4],tl[5],tl[0]],
+      [tl[2],tl[3],tl[4],tl[5],tl[0],tl[1]],
+      [tl[3],tl[4],tl[5],tl[0],tl[1],tl[2]],
+      [tl[4],tl[5],tl[0],tl[1],tl[2],tl[3]],
+      [tl[5],tl[0],tl[1],tl[2],tl[3],tl[4]]
+    ], new Point2D(16,16));
 
     int tile = 0;
-      Timer timer = new Timer.periodic( const Duration(milliseconds: 1000~/60), (_) {
-         display.clear();
-         map.draw(new Point2D(0, 0));
-         map.logic();
+    Timer timer = new Timer.periodic( const Duration(milliseconds: 1000~/60), (_) {
+       display.clear();
+       map.draw(new Point2D(0, 0));
+       map.logic();
 
-         chico.draw(new Point2D(60,80));
-         chico.logic();
-      });
+       chico.draw(new Point2D(60,80));
+       chico.logic();
+    });
   });
 
 
