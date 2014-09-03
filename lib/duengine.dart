@@ -4,9 +4,10 @@
  *
  * This library contains a set of classes that let you create a 2d game.
  */
-library DuEngine;
+library duengine;
 import 'package:gorgon/gorgon.dart';
 
+part 'src/tile.dart';
 
 //import 'dart:core';
 //import 'dart:html';
