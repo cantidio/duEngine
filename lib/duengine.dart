@@ -10,11 +10,3 @@ import 'package:gorgon/gorgon.dart';
 part 'src/object.dart';
 part 'src/tile.dart';
 part 'src/tilemap.dart';
-
-//import 'dart:core';
-//import 'dart:html';
-//import 'dart:async';
-//import 'dart:convert';
-//import 'dart:math';
-//import 'dart:collection';
-//import 'dart:web_audio';
