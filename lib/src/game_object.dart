@@ -1,19 +1,36 @@
 part of duengine;
-
+/**
+ * Class that represents a basic [GameObject].
+ */
 class GameObject {
   Animator _animator;
+  /// The current position of this [GameObject].
   Point2D position;
+  /// The current [Mirroring] of this [GameObject].
   Mirroring mirroring;
-  bool active;
-  int alpha;
+  /// The current rotation of the [GameObject]. 0.0 is the default.
   num rotation;
-  num scale;
+  /// The current alpha level of the [GameObject]. 1.0 is the default.
+  double alpha;
+  /// The current scale of the [GameObject]. 1.0 is the default.
+  double scale;
+  /// If this is false then the [GameObject] is ignored.
+  bool active;
 
+  /// Returns the [Animator] of this [GameObject].
   Animator get animator => _animator;
 
-  GameObject(Spritepack spritepack, Animationpack animationpack, Point2D position, { bool active: true, int alpha: 255 ,Mirroring mirroring: Mirroring.None, num rotation: 0, num scale: 1 })
+  /**
+   * Creates a [GameObject].
+   *
+   * It will create a [Animator] for it using the [spritepack] and [animationpack] provided and set it's initial [position].
+   * You can set following options as well:
+   *  [active], if the [GameObject] is active then it will behave normally if not, it will be ignored complety.
+   *  [alpha], [mirroring], [rotation], [scale] these will be applied and cascaded while drawing.
+   */
+  GameObject(Spritepack spritepack, Animationpack animationpack, Point2D position, { bool active: true, double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, num scale: 1 })
   {
-    _animator  = new Animator(spritepack, animationpack);
+    _animator      = new Animator(spritepack, animationpack);
     this.position  = position;
     this.alpha     = alpha;
     this.rotation  = rotation;
@@ -21,21 +38,29 @@ class GameObject {
     this.mirroring = mirroring;
     this.active    = active;
   }
-
-  void draw(Point2D position, { int alpha: 255 ,Mirroring mirroring: Mirroring.None, num rotation: 0, num scale: 1 })
+  /**
+   * Draws the [GameObject] in the given [position] using the target [Display].
+   *
+   * Note that the [position] is relative to the internal [GameObject] position.
+   * You can set the following options as well: [alpha], [mirroring], [rotation] and [scale].
+   * These will be aplied along the internal ones.
+   */
+  void draw(Point2D position, { double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0 })
   {
     if(active)
     {
       animator.draw(
         this.position + position,
-        alpha:     this.alpha - (255 - alpha),
+        alpha:     this.alpha * alpha,
         mirroring: this.mirroring ^ mirroring,
         rotation:  this.rotation + rotation,
         scale:     this.scale * scale
       );
     }
   }
-
+  /**
+   * Method that runs the [GameObject] logic. It should be called each game cycle.
+   */
   void logic()
   {
     if(active)
