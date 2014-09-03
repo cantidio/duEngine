@@ -23,7 +23,7 @@ class Tile {
     _spriteList[_frameOn].draw(position);
   }
 
-  void logic(){
+  void logic() {
     _timeOn++;
     if( ++_timeOn >= _delay ) //change frame
     {

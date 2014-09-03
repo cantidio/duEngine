@@ -4,9 +4,11 @@
  */
 import 'package:unittest/html_config.dart';
 import 'tile_test.dart'  as tile;
+import 'layer_test.dart'  as layer;
 
 main()
 {
   useHtmlConfiguration();
   tile.main();
+  layer.main();
 }
