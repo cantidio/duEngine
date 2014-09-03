@@ -1,6 +1,6 @@
 part of duengine;
 
-class Object {
+class GameObject {
   Animator _animator;
   Point2D _position;
   Mirroring _mirroring;
@@ -11,7 +11,7 @@ class Object {
 
   Animator get animator => _animator;
 
-  Object(Spritepack spritepack, Animationpack animationpack)
+  GameObject(Spritepack spritepack, Animationpack animationpack)
   {
     _animator  = new Animator(spritepack, animationpack);
     _position  = new Point2D.zero();

@@ -16,8 +16,8 @@ main()
   Animationpack chico_ap = new Animationpack.fromJSON("resources/chico/chico_animationpack.json");
 
   Future.wait([sp.onLoad, chico_sp.onLoad, chico_ap.onLoad]).then((_){
-    Object chico = new Object(chico_sp,chico_ap);
-    chico.animator.changeAnimation("walk");
+    GameObject chico = new GameObject(chico_sp,chico_ap);
+    chico.animator.changeAnimation("stand");
 
     num ang = 0.0;
     num scale = 1.0;
