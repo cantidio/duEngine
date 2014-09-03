@@ -23,12 +23,13 @@ main()
     });
 
     TileMap map = new TileMap.fromMatrix([
-                                          [tl[0],tl[1],tl[2]],
-                                          [tl[0],tl[1],tl[2]],
-                                          [tl[0],tl[1],tl[2]],
-                                          [tl[0],tl[1],tl[2]],
-                                          [tl[0],tl[1],tl[2]],
-                                          [tl[0],tl[1],tl[2]]
+                                          [tl[0],tl[1],tl[2],tl[3],tl[4],tl[5]],
+                                          [tl[1],tl[2],tl[3],tl[4],tl[5],tl[0]],
+                                          [tl[2],tl[3],tl[4],tl[5],tl[0],tl[1]],
+                                          [tl[3],tl[4],tl[5],tl[0],tl[1],tl[2]],
+                                          [tl[4],tl[5],tl[0],tl[1],tl[2],tl[3]],
+                                          [tl[5],tl[0],tl[1],tl[2],tl[3],tl[4]],
+
                                           ], new Point2D(16,16));
 
     int tile = 0;
