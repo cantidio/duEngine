@@ -12,23 +12,23 @@ class Tile {
   /**
    * Constructs tile from [Sprite] list.
    */
-  Tile(List<Sprite> spriteList,{int delay: 1}){
+  Tile(List<Sprite> spriteList, {int delay: 1}) {
     _spriteList = spriteList;
     _delay = delay;
     _frameOn = 0;
     _timeOn = 0;
   }
 
-  void draw( Point2D position ){
+  void draw(Point2D position) {
     _spriteList[_frameOn].draw(position);
   }
 
   void logic() {
     _timeOn++;
-    if( ++_timeOn >= _delay ) //change frame
+    if (++_timeOn >= _delay) //change frame
     {
       _timeOn = 0;
-      if(++_frameOn >= _spriteList.length )//reset
+      if (++_frameOn >= _spriteList.length) //reset
       {
         _frameOn = 0;
       }

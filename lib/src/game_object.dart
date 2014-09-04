@@ -3,7 +3,8 @@ part of duengine;
  * Class that represents a basic [GameObject].
  */
 class GameObject {
-  Animator _animator;
+  /// The [Animator] of the [GameObject].
+  Animator animator;
   /// The current position of this [GameObject].
   Point2D position;
   /// The current [Mirroring] of this [GameObject].
@@ -17,9 +18,6 @@ class GameObject {
   /// If this is false then the [GameObject] is ignored.
   bool active;
 
-  /// Returns the [Animator] of this [GameObject].
-  Animator get animator => _animator;
-
   /**
    * Creates a [GameObject].
    *
@@ -30,7 +28,7 @@ class GameObject {
    */
   GameObject(Spritepack spritepack, Animationpack animationpack, Point2D position, { bool active: true, double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0 })
   {
-    _animator      = new Animator(spritepack, animationpack);
+    this.animator  = new Animator(spritepack, animationpack);
     this.position  = position;
     this.alpha     = alpha;
     this.rotation  = rotation;

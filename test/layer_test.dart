@@ -4,9 +4,7 @@ import "package:unittest/unittest.dart";
 import 'package:mockito/mockito.dart';
 import "package:duengine/duengine.dart";
 import "package:gorgon/gorgon.dart";
-
-class MockTileMap extends Mock implements TileMap {}
-class MockGameObject extends Mock implements GameObject {}
+import "helper.dart";
 
 void main() {
 
