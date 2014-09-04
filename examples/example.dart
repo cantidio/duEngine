@@ -14,8 +14,12 @@ main() {
   Spritepack chico_sp = new Spritepack.fromJSON("resources/chico/chico.json");
   Animationpack chico_ap = new Animationpack.fromJSON("resources/chico/chico_animationpack.json");
 
+
+
+
   Future.wait([sp.onLoad, chico_sp.onLoad, chico_ap.onLoad]).then((_) {
     GameObject chico = new GameObject(chico_sp, chico_ap, new Point2D(30, 85));
+    GameObject chico22 = new GameObject(chico_sp, chico_ap, new Point2D(40, 95));
     chico.animator.changeAnimation("walk");
 
     num ang = -30;
@@ -29,8 +33,14 @@ main() {
     TileMap map2 = new TileMap.fromMatrix([[tl[5], tl[5], tl[5], tl[5], tl[5], tl[5]], [], [], [], [], [tl[5], tl[5], tl[5], tl[5], tl[5], tl[5]]], new Point2D(16, 16));
 
     Layer layer = new Layer(map1, [chico]);
-    Layer layer2 = new Layer(map2, []);
+
+
+    Layer layer2 = new Layer(map2, [chico22]);
+    layer2.active = null;
+//    layer2.pos(null);
+
     Background background = new Background([layer, layer2]);
+    background.position = null;
 
     int tile = 0;
     Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 60), (_) {

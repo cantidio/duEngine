@@ -18,6 +18,12 @@ class GameObject {
   /// If this is false then the [GameObject] is ignored.
   bool active;
 
+  /// Reference to the [Layer] of this [GameObject] if any.
+  Layer _layer;
+
+  /// Getter for the layer of the [GameObject].
+  Layer get layer => _layer;
+
   /**
    * Creates a [GameObject].
    *
@@ -26,15 +32,14 @@ class GameObject {
    *  [active], if the [GameObject] is active then it will behave normally if not, it will be ignored complety.
    *  [alpha], [mirroring], [rotation], [scale] these will be applied and cascaded while drawing.
    */
-  GameObject(Spritepack spritepack, Animationpack animationpack, Point2D position, { bool active: true, double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0 })
-  {
-    this.animator  = new Animator(spritepack, animationpack);
-    this.position  = position;
-    this.alpha     = alpha;
-    this.rotation  = rotation;
-    this.scale     = scale;
+  GameObject(Spritepack spritepack, Animationpack animationpack, Point2D position, {bool active: true, double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0}) {
+    this.animator = new Animator(spritepack, animationpack);
+    this.position = position;
+    this.alpha = alpha;
+    this.rotation = rotation;
+    this.scale = scale;
     this.mirroring = mirroring;
-    this.active    = active;
+    this.active = active;
   }
   /**
    * Draws the [GameObject] in the given [position] using the target [Display].
@@ -43,26 +48,16 @@ class GameObject {
    * You can set the following options as well: [alpha], [mirroring], [rotation] and [scale].
    * These will be aplied along the internal ones.
    */
-  void draw(Point2D position, { double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0 })
-  {
-    if(active)
-    {
-      animator.draw(
-        this.position + position,
-        alpha:     this.alpha * alpha,
-        mirroring: this.mirroring ^ mirroring,
-        rotation:  this.rotation + rotation,
-        scale:     this.scale * scale
-      );
+  void draw(Point2D position, {double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0}) {
+    if (active) {
+      animator.draw(this.position + position, alpha: this.alpha * alpha, mirroring: this.mirroring ^ mirroring, rotation: this.rotation + rotation, scale: this.scale * scale);
     }
   }
   /**
    * Method that runs the [GameObject] logic. It should be called each game cycle.
    */
-  void logic()
-  {
-    if(active)
-    {
+  void logic() {
+    if (active) {
       animator.runStep();
     }
   }

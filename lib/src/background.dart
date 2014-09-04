@@ -1,9 +1,10 @@
 part of duengine;
 class Background {
-  List<Layer> _layers;
-  Point2D position;
+  List<Layer> _layers = new List<Layer>();
   int _width;
   int _height;
+  Point2D position;
+
 
   /**
    * Returns a read-only [List] of [Layer] contained in the background
@@ -12,16 +13,30 @@ class Background {
 
   Background(List<Layer> layers, {Point2D position}) {
     this.position = position != null ? position : new Point2D.zero();
-    _layers = layers;
+    layers.forEach((Layer layer) => addLayer(layer));
   }
 
-//  Future loadFromMap(Map map){
-//
-//  }
-//
-//  Background.fromJSON(String uri){
-//
-//  }
+  void removeLayer(Layer layer) {
+    _layers.remove(layer);
+    layer._background = null;
+  }
+
+  /**
+   * Adds a [Layer] to a list of layers.
+   */
+  void addLayer(Layer layer) {
+    if (layer.background != null) layer.background.removeLayer(layer);
+    _layers.add(layer);
+    layer._background = this;
+  }
+
+  //  Future loadFromMap(Map map){
+  //
+  //  }
+  //
+  //  Background.fromJSON(String uri){
+  //
+  //  }
 
   void draw() {
     _layers.forEach((Layer layer) {
@@ -33,15 +48,6 @@ class Background {
     _layers.forEach((Layer layer) {
       layer.logic();
     });
-  }
-
-
-  /**
-   * Adds a [Layer] to a list of layers. Throws [ArgumentError] if null is used as argument
-   */
-  void addLayer(Layer layer){
-    if(layer == null) throw new ArgumentError("Background cannot add a null layer");
-    _layers.add(layer);
   }
 
 }

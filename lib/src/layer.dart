@@ -2,15 +2,30 @@ part of duengine;
 
 class Layer {
   TileMap _tilemap;
-  List<GameObject> _objects;
+  Background _background;
+  List<GameObject> _objects = new List<GameObject>();
   Point2D scrollspeed;
   bool active;
 
+  Background get background => _background;
+  List<GameObject> get objects => _objects.toList(growable: false);//;
+
   Layer(TileMap tilemap, List<GameObject> objects, {bool active: true, Point2D scrollspeed}) {
     _tilemap = tilemap;
-    _objects = objects;
     this.scrollspeed = scrollspeed == null ? new Point2D(1, 1) : scrollspeed;
     this.active = active;
+    objects.forEach((GameObject object) => addObject(object));
+  }
+
+  void removeObject(GameObject object) {
+    _objects.remove(object);
+    object._layer = null;
+  }
+
+  void addObject(GameObject object) {
+    if (object.layer != null) object.layer.removeObject(object);
+    _objects.add(object);
+    object._layer = this;
   }
 
   Point2D getRealPosition(Point2D position) {
