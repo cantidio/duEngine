@@ -22,12 +22,6 @@ void main() {
       layer = new Layer(tilemap, [object1,object2]);
     });
 
-    group("constructor", () {
-      test("members should match the provided values.", () {
-        expect(1, equals(1));
-      });
-    });
-
     group("getRealPosition", () {
       test("should return the position relative to the layer scroll speed", () {
         layer.scrollspeed = new Point2D(0.5, 0.5);

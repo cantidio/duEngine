@@ -5,10 +5,12 @@
 import 'package:unittest/html_config.dart';
 import 'tile_test.dart'  as tile;
 import 'layer_test.dart'  as layer;
+import 'background_test.dart'  as background;
 
 main()
 {
   useHtmlConfiguration();
   tile.main();
   layer.main();
+  background.main();
 }
