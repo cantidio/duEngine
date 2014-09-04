@@ -25,15 +25,18 @@ main() {
 
     sp.groups.forEach((String group) => tl.add(new Tile(sp[group])));
 
-    TileMap map = new TileMap.fromMatrix([[tl[0], tl[1], tl[2], tl[3], tl[4], tl[5]], [tl[1], tl[2], tl[3], tl[4], tl[5], tl[0]], [tl[2], tl[3], tl[4], tl[5], tl[0], tl[1]], [tl[3], tl[4], tl[5], tl[0], tl[1], tl[2]], [tl[4], tl[5], tl[0], tl[1], tl[2], tl[3]], [tl[5], tl[0], tl[1], tl[2], tl[3], tl[4]]], new Point2D(16, 16));
+    TileMap map1 = new TileMap.fromMatrix([[tl[0], tl[1], tl[2], tl[3], tl[4], tl[5]], [tl[1], tl[2], tl[3], tl[4], tl[5], tl[0]], [tl[2], tl[3], tl[4], tl[5], tl[0], tl[1]], [tl[3], tl[4], tl[5], tl[0], tl[1], tl[2]], [tl[4], tl[5], tl[0], tl[1], tl[2], tl[3]], [tl[5], tl[0], tl[1], tl[2], tl[3], tl[4]]], new Point2D(16, 16));
+    TileMap map2 = new TileMap.fromMatrix([[tl[5], tl[5], tl[5], tl[5], tl[5], tl[5]], [], [], [], [], [tl[5], tl[5], tl[5], tl[5], tl[5], tl[5]]], new Point2D(16, 16));
 
-    Layer layer = new Layer(map, [chico]);
+    Layer layer = new Layer(map1, [chico]);
+    Layer layer2 = new Layer(map2, []);
+    Background background = new Background([layer, layer2]);
 
     int tile = 0;
     Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 60), (_) {
       display.clear();
-      layer.draw(new Point2D.zero());
-      layer.logic();
+      background.draw();
+      background.logic();
       //       map.draw(new Point2D(0, 0));
       //       map.logic();
       //
