@@ -25,12 +25,24 @@ void main() {
         verify(layer2.draw(any));
       });
     });
-    
+
     group("logic", () {
-      test("should execut all layers logic", (){
+      test("should execut all layers logic", () {
         background.logic();
         verify(layer1.logic());
         verify(layer2.logic());
+      });
+    });
+
+    group("addLayer", () {
+      test("should add increase layers size after adding a layer", () {
+        int i = background.layers.length;
+        background.addLayer(new MockLayer());
+        expect(background.layers.length, equals(i + 1));
+      });
+      
+      test("should throw ArgumentError when adding a null layer", () {
+        expect(()=>background.addLayer(null),throwsArgumentError);  
       });
     });
 
