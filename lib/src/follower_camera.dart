@@ -12,7 +12,7 @@ class FollowerCamera extends Camera{
   }
   
   Point2D get midPoint {
-    if(_targets.length == 1) return _targets.single.position;
+//    if(_targets.length == 1) return _targets.single.position;
     Point2D sumPoint = new Point2D.zero();
     _targets.forEach((GameObject object){
       sumPoint += object.position;

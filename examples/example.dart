@@ -8,46 +8,57 @@ import 'dart:html';
 import 'dart:async';
 import 'bg.dart';
 
+class Chico extends GameObject {
+  Chico() : super(null, null, new Point2D.zero()) {
+  }
+  Future load() {
+    Completer completer = new Completer();
+    Spritepack sp = new Spritepack.fromJSON("resources/chico/chico.json");
+    Animationpack ap = new Animationpack.fromJSON("resources/chico/chico_animationpack.json");
+
+    Future.wait([sp.onLoad, ap.onLoad]).then((_) {
+      this.animator = new Animator(sp, ap);
+      completer.complete(this);
+    });
+    return completer.future;
+  }
+  void update() {
+    super.update();
+    if (animator.animationOn == "walk") {
+      if (mirroring == Mirroring.None) position += new Point2D(1, 0);
+      else if (mirroring & Mirroring.H == Mirroring.H) position -= new Point2D(1, 0);
+
+      if (position.x >= 400.0 || position.x <= 0.0) mirroring ^= Mirroring.H;
+    }
+  }
+}
 main() {
-  Display display = new Display(query("#display"), width: 320, height: 240);
+  Display display = new Display(query("#display"), width: 200, height: 200);
 
   Spritepack sp = new Spritepack.fromTileSheet("resources/mario_tilesheet.png", 16, 16);
-  Spritepack chico_sp = new Spritepack.fromJSON("resources/chico/chico.json");
-  Animationpack chico_ap = new Animationpack.fromJSON("resources/chico/chico_animationpack.json");
+  Chico chico1 = new Chico();
+  Chico chico2 = new Chico();
+  chico1.position = new Point2D(200,180);
+  chico2.position = new Point2D(200,180);
+  chico2.mirroring = Mirroring.H;
 
-  Future.wait([sp.onLoad, chico_sp.onLoad, chico_ap.onLoad]).then((_) {
-    GameObject chico = new GameObject(chico_sp, chico_ap, new Point2D(200, 85));
-    GameObject chico22 = new GameObject(chico_sp, chico_ap, new Point2D(20, 95));
-    chico.animator.changeAnimation("walk");
+  Future.wait([sp.onLoad, chico1.load(), chico2.load()]).then((_) {
+    chico1.animator.changeAnimation("walk");
+    chico2.animator.changeAnimation("walk");
 
     Background background = getBG(sp);
-    background.layers.last.addObject(chico);
-    background.layers.last.addObject(chico22);
-    
-    //Point transition example    
-//    TransitionCamera camera = new TransitionCameraBuilder
-//        .from(chico22.position, initialZoom: 2.0)
-//        .to(chico.position, finalZoom: 1.5)
-//        .withInterpolator(Interpolator.LINEAR["point"], zoomInterpolator: Interpolator.LINEAR["number"])
-//        .during(300)
-//        .build();
-    
-    //Following camera example
+    background.layers.last.addObject(chico1);
+    background.layers.last.addObject(chico2);
+
     FollowerCamera cam = new FollowerCamera(new Point2D(Display.target.width, Display.target.height));
-    cam.follow([chico, chico22]);
-    cam.zoomFactor = 2.0;
+    cam.follow([chico1]);
+    cam.zoomFactor = 3.0;
 
     Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 60), (_) {
       display.clear();
       background.drawFromCamera(cam);
-//      background.drawFromCamera(camera);
       background.update();
-//      camera.update();
       cam.update();
-
-      if (chico.mirroring == Mirroring.None) chico.position += new Point2D(1, 0);
-      if (chico.mirroring & Mirroring.H == Mirroring.H) chico.position -= new Point2D(1, 0);
-      if (chico.position.x >= 520 || chico.position.x <= 10) chico.mirroring ^= Mirroring.H;
     });
   });
 

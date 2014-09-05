@@ -33,7 +33,7 @@ class GameObject {
    *  [alpha], [mirroring], [rotation], [scale] these will be applied and cascaded while drawing.
    */
   GameObject(Spritepack spritepack, Animationpack animationpack, Point2D position, {bool active: true, double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0}) {
-    this.animator = new Animator(spritepack, animationpack);
+    if(spritepack != null && animationpack != null) this.animator = new Animator(spritepack, animationpack);
     this.position = position;
     this.alpha = alpha;
     this.rotation = rotation;
