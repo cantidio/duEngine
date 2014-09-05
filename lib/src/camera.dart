@@ -1,7 +1,6 @@
 part of duengine;
 
-abstract class Camera {
-  GameObject _object_target;
+abstract class Camera {  
   Point2D _bounds;
   Point2D _target;
   num zoomFactor;

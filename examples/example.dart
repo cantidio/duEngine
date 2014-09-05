@@ -36,13 +36,15 @@ main() {
     layer2.scrollspeed.x = 0.5;
 
     Background background = new Background(layers:[layer,layer2]);
-    SimpleCamera cam = new SimpleCamera(new Point2D(Display.target.width,Display.target.height));    
-    cam.follow(chico);
+//    SimpleCamera cam = new SimpleCamera(new Point2D(Display.target.width,Display.target.height));    
+    GroupFollowerCamera cam = new GroupFollowerCamera(new Point2D(Display.target.width,Display.target.height));    
+    cam.follow([chico, chico22]);
+    cam.zoomFactor = 2.0;
 
     Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 60), (_) {
       display.clear();
       background.drawFromCamera(cam);
-      background.logic();
+      background.update();
       cam.update();
 
       if (chico.mirroring == Mirroring.None) chico.position += new Point2D(1, -1);
