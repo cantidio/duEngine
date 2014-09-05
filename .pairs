@@ -1,0 +1,9 @@
+# .pairs - configuration for 'git pair'
+# place in project or home directory
+pairs:
+  cf: Cantidio Fontes; aniquilatorbloody
+  lm: Luis Mazoni; lipe.mazoni
+email:
+  prefix: pair
+  domain: gmail.com
+  no_solo_prefix: true

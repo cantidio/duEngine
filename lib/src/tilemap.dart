@@ -5,22 +5,10 @@ class TileMap {
   List<List<int>> _map = new List();
   Point2D tileSize;
 
-//  List<Map> _tileList;
-  void setTiles(List<Tile> tiles){
+  //  List<Map> _tileList;
+  void setTiles(List<Tile> tiles) {
     _tiles = tiles;
   }
-
-//  TileMap.fromMatrix(List<List> tileMatrix, Point2D tileSize) {
-//    _tileList = [];
-//    for (int y = 0; y < tileMatrix.length; y++) {
-//      for (int x = 0; x < tileMatrix[y].length; x++) {
-//        _tileList.add({
-//          "tile": tileMatrix[y][x],
-//          "position": new Point2D(x * tileSize.x, y * tileSize.y)
-//        });
-//      }
-//    }
-//  }
 
   int get width {
     return _map[0].length;
@@ -62,34 +50,41 @@ class TileMap {
     _map = new List.filled(height, new List.filled(width, null));
   }
 
-  
+
   List<int> operator [](int i) {
     return _map[i];
   }
-  
-  void operator []=(int i, List<int> list){
-    _map[i]= list;
+
+  void operator []=(int i, List<int> list) {
+    _map[i] = list;
   }
 
-
+  /**
+   * Heavy black magic
+   */
   void draw(Point2D position, {double scale: 1.0}) {
-    
-    
-    print(position);
-    position /= tileSize;
-    int startx = position.x.floor();
-    int starty = position.y.floor();
-    if (startx < 0) startx=0;
-    if (starty < 0) starty=0;
+    int startx = (position.x > -tileSize.x) ? 0 : (-(position.x * scale) / (tileSize.x * scale)).floor() - 1;
+    int starty = (position.y > -tileSize.y) ? 0 : (-(position.y * scale) / (tileSize.y * scale)).floor() - 1;
+    int endx = startx + (Display.target.width / (tileSize.x * scale)).ceil()+1;
+    int endy = starty + (Display.target.height / (tileSize.y * scale)).ceil()+1;
+    if (endx > width) endx = width;
+    if (endy > height) endy = height;
 
-
-    for (int y = starty; y < height; ++y) {
-      for (int x = startx; x < width; ++x) {
-        if(_map[y][x] != null){
+    double tiley = 0.0;
+    position += new Point2D(startx * tileSize.x, starty * tileSize.y);
+    for (int y = starty; y < endy; ++y) {
+      double tilex = 0.0;
+      bool already = false;
+      for (int x = startx; x < endx; ++x) {
+        if (_map[y][x] != null) {
           Tile tile = _tiles[_map[y][x]];
-          tile.draw((new Point2D(x, y) * tileSize) * new Point2D(scale, scale), scale: scale);
+          if (tile != null) {
+            tile.draw((position + new Point2D(tilex, tiley)) * new Point2D(scale, scale), scale: scale);
+          }
         }
+        tilex += tileSize.x;
       }
+      tiley += tileSize.y;
     }
   }
 

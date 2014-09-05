@@ -22,24 +22,25 @@ class Chico extends GameObject {
     });
     return completer.future;
   }
+
   void update() {
     super.update();
     if (animator.animationOn == "walk") {
-      if (mirroring == Mirroring.None) position += new Point2D(1, 0);
-      else if (mirroring & Mirroring.H == Mirroring.H) position -= new Point2D(1, 0);
-
+      if (mirroring == Mirroring.None) position += new Point2D(3, 0);
+      else if (mirroring & Mirroring.H == Mirroring.H) position -= new Point2D(3, 0);
       if (position.x >= 400.0 || position.x <= 0.0) mirroring ^= Mirroring.H;
     }
   }
 }
-main() {
-  Display display = new Display(query("#display"), width: 200, height: 200);
 
+main() {
+  Display display = new Display(query("#display"), width: 400, height: 400);
   Spritepack sp = new Spritepack.fromTileSheet("resources/mario_tilesheet.png", 16, 16);
   Chico chico1 = new Chico();
   Chico chico2 = new Chico();
-  chico1.position = new Point2D(200,180);
-  chico2.position = new Point2D(200,180);
+
+  chico1.position = new Point2D(200,200);
+  chico2.position = new Point2D(200,200);
   chico2.mirroring = Mirroring.H;
 
   Future.wait([sp.onLoad, chico1.load(), chico2.load()]).then((_) {
@@ -51,10 +52,10 @@ main() {
     background.layers.last.addObject(chico2);
 
     FollowerCamera cam = new FollowerCamera(new Point2D(Display.target.width, Display.target.height));
-    cam.follow([chico1]);
-    cam.zoomFactor = 3.0;
+    cam.follow([chico1,chico2]);
+    cam.zoomFactor  = 1.0;
 
-    Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 60), (_) {
+    Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 120), (_) {
       display.clear();
       background.drawFromCamera(cam);
       background.update();
