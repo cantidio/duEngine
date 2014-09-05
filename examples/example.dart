@@ -8,14 +8,11 @@ import 'dart:html';
 import 'dart:async';
 
 main() {
-  Display display = new Display(query("#display"), width: 640, height: 480);
+  Display display = new Display(query("#display"), width: 320, height: 240);
 
   Spritepack sp = new Spritepack.fromTileSheet("resources/mario_tilesheet.png", 16, 16);
   Spritepack chico_sp = new Spritepack.fromJSON("resources/chico/chico.json");
   Animationpack chico_ap = new Animationpack.fromJSON("resources/chico/chico_animationpack.json");
-
-
-
 
   Future.wait([sp.onLoad, chico_sp.onLoad, chico_ap.onLoad]).then((_) {
     GameObject chico = new GameObject(chico_sp, chico_ap, new Point2D(30, 85));
@@ -36,22 +33,18 @@ main() {
 
 
     Layer layer2 = new Layer(map2, [chico22]);
-    layer2.active = null;
-//    layer2.pos(null);
+    layer2.scrollspeed.x = 0.5;
 
-    Background background = new Background([layer, layer2]);
-    background.position = null;
+    Background background = new Background(layers:[layer,layer2]);
+    Camera cam = new Camera(new Point2D(Display.target.width,Display.target.height));
+    cam.follow(chico);
 
-    int tile = 0;
     Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 60), (_) {
       display.clear();
-      background.draw();
+      background.drawFromCamera(cam);
       background.logic();
-      //       map.draw(new Point2D(0, 0));
-      //       map.logic();
-      //
-      //       chico.draw(new Point2D(0,0), rotation:ang);
-      //       chico.logic();
+      cam.update();
+
       if (chico.mirroring == Mirroring.None) chico.position += new Point2D(1, -1);
       if (chico.mirroring & Mirroring.H == Mirroring.H) chico.position -= new Point2D(1, -1);
       if (chico.position.x >= 90 || chico.position.x <= 10) chico.mirroring ^= Mirroring.HV;

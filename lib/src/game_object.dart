@@ -50,7 +50,7 @@ class GameObject {
    */
   void draw(Point2D position, {double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0}) {
     if (active) {
-      animator.draw(this.position + position, alpha: this.alpha * alpha, mirroring: this.mirroring ^ mirroring, rotation: this.rotation + rotation, scale: this.scale * scale);
+      animator.draw((this.position + position)* new Point2D(scale,scale), alpha: this.alpha * alpha, mirroring: this.mirroring ^ mirroring, rotation: this.rotation + rotation, scale: this.scale * scale);
     }
   }
   /**

@@ -20,9 +20,9 @@ class TileMap {
     _tileList = tileList;
   }
 
-  void draw(Point2D position) {
+  void draw(Point2D position, {double scale: 1.0}) {
     _tileList.forEach((Map positionalTile) {
-      positionalTile["tile"].draw(position + positionalTile["position"]);
+      positionalTile["tile"].draw((position + positionalTile["position"])*new Point2D(scale,scale), scale: scale);
     });
   }
 

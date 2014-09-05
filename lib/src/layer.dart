@@ -32,13 +32,13 @@ class Layer {
     return position * scrollspeed;
   }
 
-  void draw(Point2D position) {
+  void draw(Point2D position, {double scale: 1.0}) {
     if (active) {
       Point2D pos = getRealPosition(position);
 
-      _tilemap.draw(pos);
+      _tilemap.draw(pos, scale: scale);
       _objects.forEach((GameObject object) {
-        object.draw(pos);
+        object.draw(pos, scale: scale);
       });
     }
   }

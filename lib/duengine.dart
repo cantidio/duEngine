@@ -12,3 +12,4 @@ part 'src/tile.dart';
 part 'src/tilemap.dart';
 part 'src/layer.dart';
 part 'src/background.dart';
+part 'src/camera.dart';

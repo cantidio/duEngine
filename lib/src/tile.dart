@@ -19,8 +19,8 @@ class Tile {
     _timeOn = 0;
   }
 
-  void draw(Point2D position) {
-    _spriteList[_frameOn].draw(position);
+  void draw(Point2D position, {double alpha: 1.0, Mirroring mirroring: Mirroring.None, num rotation: 0, double scale: 1.0}) {
+    _spriteList[_frameOn].draw(position, alpha: alpha, mirroring: mirroring, rotation: rotation, scale: scale);
   }
 
   void logic() {
