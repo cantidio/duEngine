@@ -13,5 +13,4 @@ part 'src/tilemap.dart';
 part 'src/layer.dart';
 part 'src/background.dart';
 part 'src/camera.dart';
-part 'src/simple_camera.dart';
-part 'src/group_follower_camera.dart';
+part 'src/follower_camera.dart';

@@ -1,9 +1,9 @@
 part of duengine;
 
-class GroupFollowerCamera extends Camera{
+class FollowerCamera extends Camera{
   List<GameObject> _targets;
 
-  GroupFollowerCamera(Point2D bounds, {num zoomFactor: 1.0}) : super(bounds, zoomFactor: zoomFactor);
+  FollowerCamera(Point2D bounds, {num zoomFactor: 1.0}) : super(bounds, zoomFactor: zoomFactor);
   
   void follow(List<GameObject> targets) {
     _targets = targets;
@@ -11,6 +11,7 @@ class GroupFollowerCamera extends Camera{
   }
   
   Point2D get midPoint {
+    if(_targets.length == 1) return _targets.single.position;
     Point2D sumPoint = new Point2D.zero();
     _targets.forEach((GameObject object){
       sumPoint += object.position;

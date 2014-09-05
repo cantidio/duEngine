@@ -37,7 +37,7 @@ main() {
 
     Background background = new Background(layers:[layer,layer2]);
 //    SimpleCamera cam = new SimpleCamera(new Point2D(Display.target.width,Display.target.height));    
-    GroupFollowerCamera cam = new GroupFollowerCamera(new Point2D(Display.target.width,Display.target.height));    
+    FollowerCamera cam = new FollowerCamera(new Point2D(Display.target.width,Display.target.height));    
     cam.follow([chico, chico22]);
     cam.zoomFactor = 2.0;
 
