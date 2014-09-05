@@ -1,29 +1,19 @@
 part of duengine;
 
-class Camera {
+abstract class Camera {
   GameObject _object_target;
   Point2D _bounds;
   Point2D _target;
+  num zoomFactor;
 
-  Camera(this._bounds) {
-
+  Camera(this._bounds, {num zoomFactor: 1.0}) {
+    this.zoomFactor = zoomFactor;
   }
 
-  void follow(GameObject target) {
-    _object_target = target;
-    _target =_object_target.position;
-  }
-
-  void update() {
-    _target = _object_target.position;
-  }
+  void update();
 
   Point2D get position {
     return _target - _bounds / new Point2D(2.0, 2.0);
-  }
-
-  num get zoomFactor {
-    return 1.0;
   }
 
   Point2D get drawPosition {

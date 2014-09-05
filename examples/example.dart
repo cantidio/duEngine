@@ -36,7 +36,7 @@ main() {
     layer2.scrollspeed.x = 0.5;
 
     Background background = new Background(layers:[layer,layer2]);
-    Camera cam = new Camera(new Point2D(Display.target.width,Display.target.height));
+    SimpleCamera cam = new SimpleCamera(new Point2D(Display.target.width,Display.target.height));    
     cam.follow(chico);
 
     Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 60), (_) {
