@@ -14,8 +14,8 @@ part 'src/tilemap.dart';
 part 'src/layer.dart';
 part 'src/background.dart';
 part 'src/camera.dart';
-part 'src/static_camera.dart';
 part 'src/follower_camera.dart';
 part 'src/transition_camera.dart';
 part 'src/transition_camera_builder.dart';
 part 'src/interpolator.dart';
+
