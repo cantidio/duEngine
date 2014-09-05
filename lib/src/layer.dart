@@ -43,11 +43,11 @@ class Layer {
     }
   }
 
-  void logic() {
+  void update() {
     if (active) {
-      _tilemap.logic();
+      _tilemap.update();
       _objects.forEach((GameObject object) {
-        object.logic();
+        object.update();
       });
     }
   }

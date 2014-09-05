@@ -56,7 +56,7 @@ class GameObject {
   /**
    * Method that runs the [GameObject] logic. It should be called each game cycle.
    */
-  void logic() {
+  void update() {
     if (active) {
       animator.runStep();
     }

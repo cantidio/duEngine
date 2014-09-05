@@ -13,7 +13,7 @@ class Background {
 
   Background({List<Layer> layers, Point2D position}) {
     this.position = position != null ? position : new Point2D.zero();
-    layers.forEach((Layer layer) => addLayer(layer));
+    if (layers != null) layers.forEach((Layer layer) => addLayer(layer));
   }
 
   void removeLayer(Layer layer) {
@@ -38,7 +38,7 @@ class Background {
   //
   //  }
 
-  void drawFromCamera(Camera camera){
+  void drawFromCamera(Camera camera) {
     draw(camera.drawPosition, scale: camera.zoomFactor);
   }
   void draw(Point2D position, {double scale: 1.0}) {
@@ -47,9 +47,9 @@ class Background {
     });
   }
 
-  void logic() {
+  void update() {
     _layers.forEach((Layer layer) {
-      layer.logic();
+      layer.update();
     });
   }
 

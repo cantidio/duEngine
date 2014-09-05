@@ -15,22 +15,28 @@ void main() {
     setUp(() {
       layer1 = new MockLayer();
       layer2 = new MockLayer();
-      background = new Background([layer1, layer2]);
+      background = new Background(layers: [layer1, layer2]);
     });
 
     group("draw", () {
       test("should draw all layers", () {
-        background.draw();
-        verify(layer1.draw(any));
-        verify(layer2.draw(any));
+        background.draw(new Point2D.zero());
+        verify(layer1.draw(any, scale: any));
+        verify(layer2.draw(any, scale: any));
       });
     });
 
-    group("logic", () {
-      test("should execut all layers logic", () {
-        background.logic();
-        verify(layer1.logic());
-        verify(layer2.logic());
+    group("drawFromCamera",(){
+      test("should draw all layers",(){});
+      test("should draw all layers using Camera drawPosition",(){});
+      test("should draw all layers using Camera alpha",(){});
+    });
+
+    group("update", () {
+      test("should execut all layers update", () {
+        background.update();
+        verify(layer1.update());
+        verify(layer2.update());
       });
     });
 
@@ -56,7 +62,7 @@ void main() {
       test("should unregister other backgrounds from the Layer", () {
         Layer layer = new Layer(new MockTileMap(), []);
         background.addLayer(layer);
-        Background background2 = new Background([]);
+        Background background2 = new Background();
         background2.addLayer(layer);
         expect(layer.background, isNot(background));
       });

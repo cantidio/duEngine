@@ -47,14 +47,14 @@ void main() {
       });
     });
 
-    group("logic", () {
+    group("update", () {
       group("when the object is active", () {
         setUp(() {
           object.active = true;
         });
 
         test("should update the animator", () {
-          object.logic();
+          object.update();
           verify(object.animator.runStep());
         });
       });
@@ -65,7 +65,7 @@ void main() {
         });
 
         test("when the object is not active it should not update the animator", () {
-          object.logic();
+          object.update();
           verifyNever(object.animator.runStep());
         });
       });

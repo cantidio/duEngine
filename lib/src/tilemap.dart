@@ -26,9 +26,9 @@ class TileMap {
     });
   }
 
-  void logic() {
+  void update() {
     _tileList.forEach((Map positionalTile) {
-      positionalTile["tile"].logic();
+      positionalTile["tile"].update();
     });
   }
 }

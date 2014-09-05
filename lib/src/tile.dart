@@ -23,7 +23,7 @@ class Tile {
     _spriteList[_frameOn].draw(position, alpha: alpha, mirroring: mirroring, rotation: rotation, scale: scale);
   }
 
-  void logic() {
+  void update() {
     _timeOn++;
     if (++_timeOn >= _delay) //change frame
     {

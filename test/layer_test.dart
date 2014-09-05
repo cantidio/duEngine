@@ -29,16 +29,16 @@ void main() {
       });
     });
 
-    group("logic", () {
-      test("should execute tilemap logic", () {
-        layer.logic();
-        verify(tilemap.logic());
+    group("update", () {
+      test("should execute tilemap update", () {
+        layer.update();
+        verify(tilemap.update());
       });
 
-      test("should execute logic of all objects", () {
-        layer.logic();
-        verify(object1.logic());
-        verify(object2.logic());
+      test("should execute update of all objects", () {
+        layer.update();
+        verify(object1.update());
+        verify(object2.update());
       });
     });
 
@@ -46,29 +46,29 @@ void main() {
       test("should draw tilemap", () {
         Point2D position = new Point2D.zero();
         layer.draw(position);
-        verify(tilemap.draw(position));
+        verify(tilemap.draw(position, scale: any));
       });
 
       test("should draw all objects", () {
         Point2D position = new Point2D.zero();
         layer.draw(position);
-        verify(object1.draw(position));
-        verify(object2.draw(position));
+        verify(object1.draw(position, scale: any));
+        verify(object2.draw(position, scale: any));
       });
 
       test("should draw tilemap in the correct position", () {
         layer.scrollspeed = new Point2D(5, 5);
         Point2D position = new Point2D(2, 2);
         layer.draw(position);
-        verify(tilemap.draw(layer.getRealPosition(position)));
+        verify(tilemap.draw(layer.getRealPosition(position), scale: any));
       });
 
       test("should draw all objects in the correct position", () {
         layer.scrollspeed = new Point2D(5, 5);
         Point2D position = new Point2D(2, 2);
         layer.draw(position);
-        verify(object1.draw(layer.getRealPosition(position)));
-        verify(object2.draw(layer.getRealPosition(position)));
+        verify(object1.draw(layer.getRealPosition(position), scale: any));
+        verify(object2.draw(layer.getRealPosition(position), scale: any));
       });
     });
 
