@@ -4,6 +4,6 @@ pairs:
   cf: Cantidio Fontes; aniquilatorbloody
   lm: Luis Mazoni; lipe.mazoni
 email:
-  prefix: pair
+#  prefix: pair
   domain: gmail.com
   no_solo_prefix: true
