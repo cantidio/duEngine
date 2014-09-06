@@ -35,7 +35,7 @@ main() {
 
       if (chico.mirroring == Mirroring.None) chico.position += new Point2D(1, 0);
       if (chico.mirroring & Mirroring.H == Mirroring.H) chico.position -= new Point2D(1, 0);
-      if (chico.position.x >= 320 || chico.position.x <= 10) chico.mirroring ^= Mirroring.H;
+      if (chico.position.x >= 520 || chico.position.x <= 10) chico.mirroring ^= Mirroring.H;
     });
   });
 

@@ -6,6 +6,7 @@
  */
 library duengine;
 import 'package:gorgon/gorgon.dart';
+import 'dart:math';
 
 part 'src/game_object.dart';
 part 'src/tile.dart';
