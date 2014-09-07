@@ -58,7 +58,18 @@ void main() {
           expect(() => map.resize(30, 0), throwsArgumentError);
         });
       });
+    });
 
+    group("update", () {
+      test("should update all tiles", () {
+        Tile tile1 = new MockTile();
+        Tile tile2 = new MockTile();
+        map.tiles.add(tile1);
+        map.tiles.add(tile2);
+        map.update();
+        verify(tile1.update());
+        verify(tile2.update());
+      });
     });
   });
 }

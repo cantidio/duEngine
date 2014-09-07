@@ -1,14 +1,14 @@
 part of duengine;
 
 class TileMap {
-  List<Tile> _tiles;
-  List<List<int>> _map = null;
+  List<Tile> tiles = new List();
+  List<List<int>> _map = new List();
   Point2D tileSize;
 
   //  List<Map> _tileList;
-  void setTiles(List<Tile> tiles) {
-    _tiles = tiles;
-  }
+//  void setTiles(List<Tile> tiles) {
+//    _tiles = tiles;
+//  }
 
   /// Return the width of the [TileMap].
   int get width => _map[0].length;
@@ -72,7 +72,7 @@ class TileMap {
       tilepos.x = 0.0;
       for (int x = startx; x < endx; ++x) {
         if (_map[y][x] != null) {
-          Tile tile = _tiles[_map[y][x]];
+          Tile tile = tiles[_map[y][x]];
           if (tile != null) {
             tile.draw((position + tilepos) * new Point2D(scale, scale), scale: scale);
           }
@@ -84,6 +84,6 @@ class TileMap {
   }
 
   void update() {
-    _tiles.forEach((Tile tile) => tile.update());
+    tiles.forEach((Tile tile) => tile.update());
   }
 }
