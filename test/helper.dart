@@ -8,6 +8,7 @@ class MockSpritepack extends Mock implements Spritepack {}
 class MockAnimationpack extends Mock implements Animationpack {}
 
 // DUENGINE MOCKS
+class MockTile extends Mock implements Tile {}
 class MockTileMap extends Mock implements TileMap {}
 class MockLayer extends Mock implements Layer {}
 class MockGameObject extends Mock implements GameObject {}
