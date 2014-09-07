@@ -12,9 +12,9 @@ import 'background_test.dart'  as background;
 main()
 {
   useHtmlConfiguration();
-//  game_object.main();
-//  tile.main();
+  game_object.main();
+  tile.main();
   tilemap.main();
-//  layer.main();
-//  background.main();
+  layer.main();
+  background.main();
 }

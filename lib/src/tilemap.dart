@@ -18,16 +18,14 @@ class TileMap {
 
   TileMap(int width, int height, Point2D tileSize) {
     resize(width, height);
-
     this.tileSize = tileSize;
-    _map = new List.filled(height, new List.filled(width, null));
   }
 
   /**
-     * Method that resizes the [TileMap] by the [width] and [height] provided.
-     *
-     * ** If the requested width or height are lower than the actual, the spare tiles will be discarded.
-     */
+   * Method that resizes the [TileMap] by the [width] and [height] provided.
+   *
+   * ** If the requested width or height are lower than the actual, the spare tiles will be discarded.
+   */
   void resize(int width, int height) {
     if (width <= 0) throw new ArgumentError("TileMap width must be greater than 0.");
     if (height <= 0) throw new ArgumentError("TileMap height must be greater than 0.");
@@ -36,24 +34,18 @@ class TileMap {
     int old_height = (old_map != null) ? old_map.length : 0;
     int old_width = (old_height > 0) ? old_map[0].length : 0;
 
-    print("estou aqui: $height. ${this.hashCode}");
     _map = new List(height);
     for (int y = 0; y < height; ++y) {
-
-      List<int> row = new List<int>(width);
-      _map[y] = row;
-      print("passamos aqui: $y - ${row.hashCode}");
-//      if (y < old_height) {
-        for (int x = 0; x < width ; ++x) {
-          _map[y][x] = y*100 + x;
+      _map[y] = new List<int>(width);
+      if (y < old_height) {
+        for (int x = 0; x < width && x < old_width; ++x) {
+          _map[y][x] = old_map[y][x];
         }
-//      }
+      }
     }
-    print(_map);
   }
 
   List<int> operator [](int i) {
-    print("require: $i - ${_map[i].hashCode} - ${this.hashCode}");
     return _map[i];
   }
 
