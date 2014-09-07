@@ -34,7 +34,8 @@ class Chico extends GameObject {
 }
 
 main() {
-  Display display = new Display(query("#display"), width: 400, height: 400);
+  Display display = new Display(querySelector("#display"), width: 400, height: 400);
+
   Spritepack sp = new Spritepack.fromTileSheet("resources/mario_tilesheet.png", 16, 16);
   Chico chico1 = new Chico();
   Chico chico2 = new Chico();

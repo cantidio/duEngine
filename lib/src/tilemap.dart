@@ -5,17 +5,15 @@ class TileMap {
   List<List<int>> _map = new List();
   Point2D tileSize;
 
-  //  List<Map> _tileList;
-//  void setTiles(List<Tile> tiles) {
-//    _tiles = tiles;
-//  }
-
   /// Return the width of the [TileMap].
   int get width => _map[0].length;
 
   /// Return the height of the [TileMap].
   int get height => _map.length;
 
+  /**
+   * Creates a new TileMap Object of [width] x [height].
+   */
   TileMap(int width, int height, Point2D tileSize) {
     resize(width, height);
     this.tileSize = tileSize;
@@ -45,16 +43,6 @@ class TileMap {
     }
   }
 
-  List<int> operator [](int i) {
-    return _map[i];
-  }
-
-  //TODO remove this
-//  void operator []=(int i, List<int> list) {
-//    print("aqui");
-//    _map[i] = list;
-//  }
-
   /**
    * Method that draws the visible [Tiles] in the [TileMap] in the correct [position].
    */
@@ -83,7 +71,16 @@ class TileMap {
     }
   }
 
+  /**
+   * Method that updates all [Tile]s in this [TileMap].
+   */
   void update() {
     tiles.forEach((Tile tile) => tile.update());
   }
+  /**
+   * Operator that returns a row in the map.
+   */
+  List<int> operator [](int i) {
+      return _map[i];
+    }
 }
