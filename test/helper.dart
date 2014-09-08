@@ -4,6 +4,7 @@ import "package:gorgon/gorgon.dart";
 
 // GORGON MOCKS
 class MockAnimator extends Mock implements Animator {}
+class MockSprite extends Mock implements Sprite {}
 class MockSpritepack extends Mock implements Spritepack {}
 class MockAnimationpack extends Mock implements Animationpack {}
 
