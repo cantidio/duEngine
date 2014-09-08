@@ -34,9 +34,9 @@ class Chico extends GameObject {
 }
 
 main() {
-  Display display = new Display(querySelector("#display"), width: 400, height: 400);
+  Display display = new Display(querySelector("#display"), width: 320, height: 240);
 
-  Spritepack sp = new Spritepack.fromTileSheet("resources/mario_tilesheet.png", 16, 16);
+  Spritepack sp = new Spritepack.fromTileSheet("resources/bg-tile.png", 8, 8);
   Chico chico1 = new Chico();
   Chico chico2 = new Chico();
 
@@ -53,10 +53,10 @@ main() {
     background.layers.last.addObject(chico2);
 
     FollowerCamera cam = new FollowerCamera(new Point2D(Display.target.width, Display.target.height));
-    cam.follow([chico1,chico2]);
+    cam.follow([chico1]);
     cam.zoomFactor  = 1.0;
 
-    Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 120), (_) {
+    Timer timer = new Timer.periodic(const Duration(milliseconds: 1000 ~/ 60), (_) {
       display.clear();
       background.drawFromCamera(cam);
       background.update();
