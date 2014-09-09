@@ -36,7 +36,7 @@ class Chico extends GameObject {
 main() {
   Display display = new Display(querySelector("#display"), width: 320, height: 240);
 
-  Spritepack sp = new Spritepack.fromTileSheet("resources/bg-tile.png", 8, 8);
+  Spritepack sp = new Spritepack.fromTileSheet("resources/bg-tile.png", 8, 8, new Point2D.zero());
   Chico chico1 = new Chico();
   Chico chico2 = new Chico();
 
