@@ -28,7 +28,7 @@ class Chico extends GameObject {
     if (animator.animationOn == "walk") {
       if (mirroring == Mirroring.None) position += new Point2D(3, 0);
       else if (mirroring & Mirroring.H == Mirroring.H) position -= new Point2D(3, 0);
-      if (position.x >= 400.0 || position.x <= 0.0) mirroring ^= Mirroring.H;
+      if (position.x >= 4000.0 || position.x <= 0.0) mirroring ^= Mirroring.H;
     }
   }
 }

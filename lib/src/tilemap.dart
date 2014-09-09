@@ -10,6 +10,8 @@ class TileMap {
   List<List<int>> _map = new List();
   /// Return the size of the [Tile]s.
   Point2D tileSize;
+  bool repeatX=false;
+  bool repeatY=false;
 
   /// Return the width of the [TileMap].
   int get width => _map[0].length;
@@ -53,20 +55,20 @@ class TileMap {
    * Method that draws the visible [Tiles] in the [TileMap] in the correct [position].
    */
   void draw(Point2D position, {double scale: 1.0}) {
-    int startx = (position.x > -tileSize.x) ? 0 : (-position.x / tileSize.x).floor();
-    int starty = (position.y > -tileSize.y) ? 0 : (-position.y / tileSize.y).floor();
+    int startx = (!repeatX && position.x > -tileSize.x) ? 0 : (-position.x / tileSize.x).floor();
+    int starty = (!repeatY && position.y > -tileSize.y) ? 0 : (-position.y / tileSize.y).floor();
     int endx = startx + (Display.target.width / (tileSize.x * scale)).ceil() + 1;
     int endy = starty + (Display.target.height / (tileSize.y * scale)).ceil() + 1;
-    if (endx > width) endx = width;
-    if (endy > height) endy = height;
+    if (!repeatX && endx > width) endx = width;
+    if (!repeatY && endy > height) endy = height;
 
     Point2D tilepos = new Point2D.zero();
     position += new Point2D(startx * tileSize.x, starty * tileSize.y);
     for (int y = starty; y < endy; ++y) {
       tilepos.x = 0.0;
       for (int x = startx; x < endx; ++x) {
-        if (_map[y][x] != null) {
-          Tile tile = tiles[_map[y][x]];
+        if (_map[y%height][x%width] != null) {
+          Tile tile = tiles[_map[y%height][x%width]];
           if (tile != null) {
             tile.draw((position + tilepos) * new Point2D(scale, scale), scale: scale);
           }
@@ -83,6 +85,7 @@ class TileMap {
   void update() {
     tiles.forEach((Tile tile) => tile.update());
   }
+
   /**
    * Operator that returns a row in the map.
    */
