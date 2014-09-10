@@ -1,10 +1,10 @@
 part of duengine;
 /**
- * Class That Represents a Simple [KeyboardInput].
+ * Class That Represents a Simple [InputKeyboard].
  *
  * This class can be Extended to include more keys.
  */
-class KeyboardInput extends InputBase {
+class InputKeyboard extends InputBase {
   Keyboard _keyboard;
   Map<String, int> _keymap = {
     "Left": KeyCode.LEFT,
@@ -21,9 +21,9 @@ class KeyboardInput extends InputBase {
   List<String> get triggers => _keymap.keys.toList();
 
   /**
-   * Creates a new KeyboardInput
+   * Creates a new [InputKeyboard].
    */
-  KeyboardInput() {
+  InputKeyboard() {
     _keyboard = new Keyboard();
   }
 
