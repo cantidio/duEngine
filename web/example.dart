@@ -11,15 +11,16 @@ import 'bg.dart';
 class Chico extends GameObject {
   InputCommandController controller;
   bool walking=false;
+
   Chico() : super(null, null, new Point2D.zero()) {
     List<InputCommand> commands = [
-      new InputCommand(["Down", "Down+Right", "Right+Button1"], () {
+      new InputCommand(["DOWN", "DOWN+RIGHT", "RIGHT+A"], () {
         print("super.");
         return true;
       }),
-      new InputCommand(["Left"],() => mirroring = Mirroring.H),
-      new InputCommand(["Right"],() => mirroring = Mirroring.None),
-      new InputCommand(["Left/Right"],(){
+      new InputCommand(["LEFT"],() => mirroring = Mirroring.H),
+      new InputCommand(["RIGHT"],() => mirroring = Mirroring.None),
+      new InputCommand(["LEFT/RIGHT"],(){
         walking=true;
         animator.changeAnimation("walk");
         position += new Point2D((mirroring == Mirroring.None) ? 4 : -4, 0);

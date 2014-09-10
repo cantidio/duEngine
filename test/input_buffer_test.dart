@@ -56,7 +56,6 @@ void main() {
       test("should return false if the composed command was executed, but the delay between each trigger was bigger than the delay requested.", () {
         expect(buffer.checkCommand(new InputCommand(["B", "D"]), 1), equals(false));
       });
-
     });
 
   });
