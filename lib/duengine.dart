@@ -8,6 +8,7 @@ library duengine;
 import 'package:gorgon/gorgon.dart';
 import 'dart:math';
 
+part 'src/input_base.dart';
 part 'src/game_object.dart';
 part 'src/tile.dart';
 part 'src/tilemap.dart';
