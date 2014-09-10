@@ -22,7 +22,12 @@ class Chico extends GameObject {
       new InputCommand(["Left/Right"],(){
         walking=true;
         animator.changeAnimation("walk");
-        position += new Point2D((mirroring == Mirroring.None) ? 3 : -3, 0);
+        position += new Point2D((mirroring == Mirroring.None) ? 4 : -4, 0);
+        if(position.x%640 >= -20 && position.x%640 <= 40){
+          position.y = 200 + (position.x%640/8)*8;
+        } else if(position.x%640 >= 165 && position.x%640 <= 206){
+          position.y = 241 - ((position.x%640-165)/8)*8;
+        }
         return true;
       })
     ];
