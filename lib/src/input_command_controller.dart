@@ -3,14 +3,16 @@ part of duengine;
 class InputCommandController {
   List<InputCommand> _commandList;
   InputBuffer _buffer;
-  int _delay = 5;
+  int _delay;
 
-  InputCommandController(InputBase input, List<InputCommand> commandList, [int delay]) {
+  InputCommandController(InputBase input, List<InputCommand> commandList, [int delay=5]) {
+    if (commandList == null || commandList.length < 1) {
+      throw new ArgumentError("CommandList should have at least one InputCommand.");
+    }
     _commandList = commandList;
-    // TODO Sort the command lsit
-//    _commandList.sort();
-    _buffer = new InputBuffer(input, 30);
-    if (delay != null) _delay = delay;
+    _commandList.sort(InputCommand.Compare);
+    _delay = delay;
+    _buffer = new InputBuffer(input, _commandList[0].length * _delay);
   }
 
   void update() {
@@ -18,7 +20,6 @@ class InputCommandController {
     for (int i = 0; i < _commandList.length; ++i) {
       InputCommand command = _commandList[i];
       if (_buffer.checkCommand(command, _delay) && consumeCommand(command)) {
-        _buffer.clear();
         break;
       }
     }
@@ -27,5 +28,4 @@ class InputCommandController {
   bool consumeCommand(InputCommand command) {
     return (command.callback != null && command.callback() == true);
   }
-
 }

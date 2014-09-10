@@ -14,4 +14,19 @@ class InputCommand {
 
   /// Creates a new [InputCommand].
   InputCommand(this.actions, [this.callback]);
+
+  /**
+   * Method that describes the Sprite Object returning a [String].
+   */
+  String toString() => "InputCommand(actions: $actions, callback: $callback)";
+
+  int get length => actions.length;
+
+  /**
+   * Method that compares 2 [InputCommand]s.
+   * It is used for sorting a list of [InputCommand]s desc.
+   */
+  static Compare(InputCommand a, InputCommand b){
+    return b.length - a.length;
+  }
 }
