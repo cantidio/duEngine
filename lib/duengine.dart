@@ -9,11 +9,11 @@ import 'package:gorgon/gorgon.dart';
 import 'dart:math';
 import 'dart:html';
 
-part 'src/input_base.dart';
-part 'src/input_command.dart';
-part 'src/input_command_controller.dart';
-part 'src/input_buffer.dart';
-part 'src/input_keyboard.dart';
+part 'src/input/input_base.dart';
+part 'src/input/input_command.dart';
+part 'src/input/input_command_controller.dart';
+part 'src/input/input_buffer.dart';
+part 'src/input/input_keyboard.dart';
 part 'src/game_object.dart';
 part 'src/tile.dart';
 part 'src/tilemap.dart';
