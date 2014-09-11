@@ -19,9 +19,9 @@ part 'src/tile.dart';
 part 'src/tilemap.dart';
 part 'src/layer.dart';
 part 'src/background.dart';
-part 'src/camera.dart';
-part 'src/follower_camera.dart';
-part 'src/transition_camera.dart';
-part 'src/transition_camera_builder.dart';
-part 'src/interpolator.dart';
+part 'src/camera/camera.dart';
+part 'src/camera/follower_camera.dart';
+part 'src/camera/transition_camera.dart';
+part 'src/camera/transition_camera_builder.dart';
+part 'src/camera/interpolator.dart';
 
