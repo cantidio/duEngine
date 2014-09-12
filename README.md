@@ -5,4 +5,4 @@
 duEngine
 ========
 
-Try the last successful build Examples on <a href="http://duengine.herokuapp.com" target="_blank">Heroku</a>
+DuEngine is a 2D Game Engine build uppon the library GorgonDart.
