@@ -1,6 +1,6 @@
 name: duengine
 version: 0.0.1
-description: DuEngine is a 2D Game Engine build uppon the library GorgonDart.
+description: DuEngine is a 2D Game Engine built uppon the library GorgonDart.
 environment:
   sdk: '>=1.5.2'
 dependencies:

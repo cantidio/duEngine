@@ -5,4 +5,4 @@
 duEngine
 ========
 
-DuEngine is a 2D Game Engine build uppon the library GorgonDart.
+DuEngine is a 2D Game Engine built uppon the library GorgonDart.
