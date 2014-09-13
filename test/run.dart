@@ -9,6 +9,7 @@ import 'tilemap_test.dart'  as tilemap;
 import 'layer_test.dart'  as layer;
 import 'background_test.dart'  as background;
 
+import 'input_command_test.dart' as input_command;
 import 'input_buffer_test.dart' as input_buffer;
 main()
 {
@@ -18,5 +19,6 @@ main()
   tilemap.main();
   layer.main();
   background.main();
+  input_command.main();
   input_buffer.main();
 }

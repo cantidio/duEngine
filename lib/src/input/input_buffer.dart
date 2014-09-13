@@ -39,7 +39,7 @@ class InputBuffer {
    */
   void update() {
     ++_currentFrame;
-    _currentFrame %= _buffer.length;
+    _currentFrame %= length;
     _buffer[_currentFrame] = "";
     input.triggers.forEach((String trigger) {
       if (input.check(trigger)) {
@@ -49,39 +49,18 @@ class InputBuffer {
   }
 
   /**
-   * Method that checks if the requested [action]s are triggered.
-   * TODO optimize this, maybe migrate this method to the [InputCommand].
-   */
-  bool checkAction(String pressed, List<String> actions) {
-    if (pressed != "") {
-      for (int i = 0; i < actions.length; ++i) {
-        List<String> actionEntries = actions[i].split("+");
-        bool checked = true;
-        for (int j = 0; j < actionEntries.length; ++j) {
-          if (pressed.indexOf(actionEntries[j]) == -1) {
-            checked = false;
-            break;
-          }
-        }
-        if (checked) return true;
-      }
-    }
-    return false;
-  }
-
-  /**
    * Method that checks if the requested [InputCommand] was executed in this [InputBuffer].
    * You should provide a [delay] for it. This is the maximum [delay] allowed between [InputCommand] action.
    */
   bool checkCommand(InputCommand command, int delay) {
     int pos = _currentFrame;
-    int currentAction = command.actions.length - 1;
+    int currentAction = command.length - 1;
     int currentDelay = delay - 1;
-    for (int i = 0; i < delay * command.actions.length && currentAction >= 0 && delay != currentDelay; ++i) {
+    for (int i = 0; i < delay * command.length && currentAction >= 0 && delay != currentDelay; ++i) {
       //  TODO check for empty input between the same sequential input. EX : ["Right", "Right"]
       ++currentDelay;
 
-      if (checkAction(_buffer[(pos - i) % _buffer.length], command.actions[currentAction].split("/"))) {
+      if (command.checkAction(_buffer[(pos - i) % length], currentAction)) {
         --currentAction;
         currentDelay = 0;
       }
