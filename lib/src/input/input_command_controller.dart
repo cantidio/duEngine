@@ -1,5 +1,11 @@
 part of duengine;
 
+/**
+ * This class represents a Input Command Controller.
+ * It can uses a custom [InputBase] to check against a list of [InputCommand]s.
+ * It will create a [InputBuffer] and checks the [InputCommand] List for a match, when it happens
+ * it then triggers your [InputCommand] callback.
+ */
 class InputCommandController {
   List<InputCommand> _commandList;
   InputBuffer _buffer;

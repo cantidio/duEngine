@@ -8,7 +8,12 @@ part of duengine;
 class InputBuffer {
   int _currentFrame = 0;
   List<String> _buffer;
+
+  /// The Input that will be used to update the buffer.
   InputBase input;
+
+  /// Return the length of the [InputBuffer].
+  int get length => _buffer.length;
 
   /**
    * Create a new [InputBuffer] using a [InputBase].
